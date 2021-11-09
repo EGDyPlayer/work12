@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/integration
+            emailjs.init('user_DriKj3f0XUdEjGskx2AMw');
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // generate a five digit number for the contact_number variable
+                this.contact_number.value = Math.random() * 100000 | 0;
+                // these IDs from the previous steps
+                emailjs.sendForm('service_dmej83p', 'template_cp4r2gr', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
+</head>
+<body>
+    <form action="#" id="contact-form">
+        <input type="hidden" name="contact_number">
+        <div>
+            <p>Name</p>
+            <input placeholder="name"type="text" name="name">
+        </div>
+
+        <div>
+            <p>Password</p>
+            <input type="password" name="password">
+        </div>
+
+        <div>
+            <p>Email</p>
+            <input type="email" name="email">
+        </div>
+
+        <div>
+            <p>Phone</p>
+            <input type="tel" name="tel">
+        </div>
+
+        <div>
+            <p>Пол</p>
+            <p>
+                 <label>
+                    <input checked type="radio" name= "pol"> Male
+                 </label>
+            </p>
+            <p>
+                <label>
+                    <input type="radio" name = "pol"> female
+                </label>
+            </p>
+        </div>
+
+        <div>
+            <p>Имущество</p>
+            <p>
+                <label>
+                    <input checked type="checkbox" name="bike"> bike
+                </label></p>
+            <p>
+                <label>
+                    <input type="checkbox" name="car"> car
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type="checkbox" name="house"> house
+                </label>
+            </p>
+            
+        </div>
+
+        <div>
+            <p>Additional Info</p>
+            <textarea cols="30" rows="10"></textarea>
+        </div>
+
+        <div>
+            <p>Add photo</p>
+            <input type="file">
+        </div>
+
+        <div>
+            <p>Favourite color</p>
+            <select name="colors">
+                <option value="red">Red</option>
+                <option value="yellow">Yellow</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+            </select>
+        </div>
+
+        <div>
+            <p>Action</p>
+            <button type="submit">Send</button>
+            <button type="reset">Reset</button>
+        </div>
+    </form>
+</body>
+</html>
